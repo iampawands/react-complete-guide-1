@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Person from './Person/Person.js'
+import Person from './Person/Person.js';
 class App extends Component {
   state = {
     persons : [{name:'Pawan',age:18},
@@ -10,6 +10,14 @@ class App extends Component {
     ]
   }
   
+  changeState = () => {
+    this.setState({
+    persons : [{name:'Pawanaa',age:44},
+    {name:'Amsnaa',age:33},
+    {name:'Jayeaa',age:22}
+    ]
+  });
+  }
   render() {
     return (
       <div className="App">
@@ -21,9 +29,10 @@ class App extends Component {
           To get started, edit <code>#include world.h</code> and save to reload.
         </p>
         <Person name={this.state.persons[0].name} Age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} Age={this.state.persons[1].age}>This is some random text inside component tags</Person>
+        <Person name={this.state.persons[1].name} Age={this.state.persons[1].age}>Inside component tags</Person>
         <Person name={this.state.persons[2].name} Age={this.state.persons[2].age}/>
         
+        <button onClick={this.changeState}>Change State</button>
       </div>
     );
   }
