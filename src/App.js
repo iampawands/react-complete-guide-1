@@ -14,7 +14,7 @@ class App extends Component {
           To get started, edit <code>#include world.h</code> and save to reload.
         </p>
         <Person name='Pawan' Age='18'/>
-        <Person name='Amsn' Age='19'/>
+        <Person name='Amsn' Age='19'>This is some random text inside component tags</Person>
         <Person name='Jaye' Age='20'/>
         
       </div>
