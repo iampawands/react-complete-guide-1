@@ -10,9 +10,9 @@ class App extends Component {
     ]
   }
   
-  changeState = () => {
+  changeState = (newName) => {
     this.setState({
-    persons : [{name:'Pawanaa',age:44},
+    persons : [{name:newName,age:44},
     {name:'Amsnaa',age:33},
     {name:'Jayeaa',age:22}
     ]
@@ -29,10 +29,10 @@ class App extends Component {
           To get started, edit <code>#include world.h</code> and save to reload.
         </p>
         <Person name={this.state.persons[0].name} Age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} Age={this.state.persons[1].age}>Inside component tags</Person>
+        <Person name={this.state.persons[1].name} Age={this.state.persons[1].age} click={this.changeState.bind(this,"abc")}>Inside component tags</Person>
         <Person name={this.state.persons[2].name} Age={this.state.persons[2].age}/>
         
-        <button onClick={this.changeState}>Change State</button>
+        <button onClick={this.changeState.bind(this,"xyz")}>Change State</button>
       </div>
     );
   }
