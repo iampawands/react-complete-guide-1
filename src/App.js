@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Person from './Person/Person.js';
+import Person from './Person/Person';
+import UserOutput from './UserOutput/UserOutput'
+import UserInput from './UserInput/UserInput'
 class App extends Component {
   state = {
     persons : [{name:'Pawan',age:18},
     {name:'Amsn',age:18},
     {name:'Jaye',age:18}
-    ]
+    ],
+    userName:'Pawan'
   }
   
   changeState = (newName) => {
@@ -27,6 +30,12 @@ class App extends Component {
     {name:'Jayeaa',age:22}
     ]
   });
+  }
+  
+  userNameChangeTextHandler = (event) => {
+    this.setState({
+      userName:event.target.value
+    });
   }
   
   render() {
@@ -53,8 +62,10 @@ class App extends Component {
         textChange={this.changeTextHandler}
         >Inside component tags</Person>
         <Person name={this.state.persons[2].name} Age={this.state.persons[2].age}/>
-        
         <button style={style} onClick={this.changeState.bind(this,"xyz")}>Change State</button>
+        <UserOutput userName={this.state.userName}/>
+        <UserOutput userName={this.state.userName}/>
+        <UserInput userNameChanged={this.userNameChangeTextHandler} userName={this.state.userName}/>
       </div>
     );
   }
