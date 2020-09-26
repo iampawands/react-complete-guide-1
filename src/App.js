@@ -30,6 +30,15 @@ class App extends Component {
   }
   
   render() {
+    const style = {
+      backgroudColor:'white',
+      font:'inherit',
+      cursor:'pointer',
+      padding:'8px',
+      border:'1px solid blue'
+      
+    }
+    
     return (
       <div className="App">
         <header className="App-header">
@@ -45,7 +54,7 @@ class App extends Component {
         >Inside component tags</Person>
         <Person name={this.state.persons[2].name} Age={this.state.persons[2].age}/>
         
-        <button onClick={this.changeState.bind(this,"xyz")}>Change State</button>
+        <button style={style} onClick={this.changeState.bind(this,"xyz")}>Change State</button>
       </div>
     );
   }
