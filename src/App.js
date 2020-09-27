@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
+//in the latest version you have to use './App.module.css' and rename css fie also to this i.e. App.module.css file. No need of npm run eject and chaning the config files.
+import classes from './App.css';
 import Person from './Person/Person';
 import styled from 'styled-components'
 import Radium, { StyleRoot  } from 'radium'
 
-const StyledButton = styled.button`
-      background-color:${props => props.alt?'red':'green' };
-      color:white;
-      font:inherit;
-      cursor:pointer;
-      padding:8px;
-      border:1px solid blue;
-      &:hover{
-      background-color:${props => props.alt?'salmon':'lightgreen' };
-      color:black;
-      }`;
 
 class App extends Component {
   state = {
@@ -73,6 +63,8 @@ class App extends Component {
   
   render() {
     let personsList = null;
+    let btnClasses = [classes.Button]
+    
     
     if(this.state.showPersons){
       personsList = (
@@ -87,24 +79,25 @@ class App extends Component {
             } )}
             </div>
         );
-        
+     
+     btnClasses.push(classes.Red)   
     }
     
-    let classes = [];
+    let classList = [];
     
     if(this.state.persons.length<=2){
-      classes.push('red')
+      classList.push(classes.red)
     }
     
     if(this.state.persons.length<=1){
-      classes.push('bold')
+      classList.push(classes.bold)
     }
     
     return (
       <StyleRoot>
-      <div className="App">
-        <p className={classes.join(' ')}>List of Persons!!</p>
-        <StyledButton alt={this.state.showPersons} onClick={this.togglePersonHandler.bind(this)}>Toggle Persons</StyledButton>
+      <div className={classes.App}>
+        <p className={classList.join(' ')}>List of Persons!!</p>
+        <button className={btnClasses.join(' ')} onClick={this.togglePersonHandler.bind(this)}>Toggle Persons</button>
         {personsList}
       </div>
       </StyleRoot>

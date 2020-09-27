@@ -34,3 +34,21 @@
 .bold{
   font-weight: bold;
 }
+
+.Button{
+  background-color:green;
+       color:white;
+      font:inherit;
+      cursor:pointer;
+      padding:8px;
+      border:1px solid blue;
+}
+
+.Button:hover{
+      background-color:lightgreen;
+      color:black;
+}
+
+.Button.Red{
+  background-color: red;
+}
