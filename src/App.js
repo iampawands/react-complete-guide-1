@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 //in the latest version you have to use './App.module.css' and rename css fie also to this i.e. App.module.css file. No need of npm run eject and chaning the config files.
 import classes from './App.css';
 import Person from './Person/Person';
-import styled from 'styled-components'
 import Radium, { StyleRoot  } from 'radium'
 
 
