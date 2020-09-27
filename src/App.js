@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
-import UserOutput from './UserOutput/UserOutput'
-import UserInput from './UserInput/UserInput'
 class App extends Component {
   state = {
-    persons : [{name:'Pawan',age:18},
-    {name:'Amsn',age:18},
-    {name:'Jaye',age:18}
+    persons : [{id:1,name:'Pawan',age:18},
+    {id:2,name:'Amsn',age:18},
+    {id:3,name:'Jaye',age:18}
     ],
-    userName:'Pawan'
+    userName:'Pawan',
+    showPersons : false
   }
   
   changeState = (newName) => {
@@ -22,20 +21,39 @@ class App extends Component {
   });
   }
   
-  changeTextHandler = (event) =>{
+  changeTextHandler = (event, id) =>{
+      let perInd = this.state.persons.findIndex(p=>{
+        return p.id === id;
+      });
+      
+      const person = {
+        ...this.state.persons[perInd]
+      };
+      
+      person.name = event.target.value;
+      
+      const personList = [...this.state.persons]
+        
+      personList[perInd] = person
+         
       this.setState({
-    persons : [
-    {name:"Pawan",age:44},
-    {name:event.target.value,age:33},
-    {name:'Jayeaa',age:22}
-    ]
-  });
+        persons:personList
+      })
   }
   
-  userNameChangeTextHandler = (event) => {
+  togglePersonHandler = () =>{
     this.setState({
-      userName:event.target.value
+      showPersons:!this.state.showPersons
     });
+  }
+
+  deletePersonHandler = (id) => {
+    const temp = [...this.state.persons]
+    temp.splice(id,1);
+    this.setState({
+      persons:temp
+    }
+      );
   }
   
   render() {
@@ -48,24 +66,27 @@ class App extends Component {
       
     }
     
+    let personsList = null;
+    
+    if(this.state.showPersons){
+      personsList = (
+            <div>
+            {this.state.persons.map((person,index) => {
+              return  <Person 
+              name={person.name} 
+              Age={person.age}
+              click={this.deletePersonHandler.bind(this,index)}
+              textChange={ (event) => this.changeTextHandler(event,person.id)}
+              key={person.id}/>;
+            } )}
+            </div>
+        );
+    }
+    
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <Person name={this.state.persons[0].name} Age={this.state.persons[0].age}/>
-        <Person 
-        name={this.state.persons[1].name} 
-        Age={this.state.persons[1].age} 
-        click={this.changeState.bind(this,"abc")}
-        textChange={this.changeTextHandler}
-        >Inside component tags</Person>
-        <Person name={this.state.persons[2].name} Age={this.state.persons[2].age}/>
-        <button style={style} onClick={this.changeState.bind(this,"xyz")}>Change State</button>
-        <UserOutput userName={this.state.userName}/>
-        <UserOutput userName={this.state.userName}/>
-        <UserInput userNameChanged={this.userNameChangeTextHandler} userName={this.state.userName}/>
+        <button style={style} onClick={this.togglePersonHandler.bind(this)}>Toggle Persons</button>
+        {personsList}
       </div>
     );
   }
