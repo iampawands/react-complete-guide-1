@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 //in the latest version you have to use './App.module.css' and rename css fie also to this i.e. App.module.css file. No need of npm run eject and chaning the config files.
 import classes from './App.css';
-import Person from './Person/Person';
+import Persons from '../Components/Persons/Persons';
 import Radium, { StyleRoot  } from 'radium'
-
+import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
   state = {
@@ -46,8 +46,9 @@ class App extends Component {
   }
   
   togglePersonHandler = () =>{
+    let currentState = this.state.showPersons;
     this.setState({
-      showPersons:!this.state.showPersons
+      showPersons:!currentState
     });
   }
 
@@ -62,41 +63,19 @@ class App extends Component {
   
   render() {
     let personsList = null;
-    let btnClasses = [classes.Button]
-    
     
     if(this.state.showPersons){
       personsList = (
-            <div>
-            {this.state.persons.map((person,index) => {
-              return  <Person 
-              name={person.name} 
-              Age={person.age}
-              click={this.deletePersonHandler.bind(this,index)}
-              textChange={ (event) => this.changeTextHandler(event,person.id)}
-              key={person.id}/>;
-            } )}
-            </div>
-        );
-     
-     btnClasses.push(classes.Red)   
+            <Persons personList={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.changeTextHandler}/>
+        );   
     }
-    
-    let classList = [];
-    
-    if(this.state.persons.length<=2){
-      classList.push(classes.red)
-    }
-    
-    if(this.state.persons.length<=1){
-      classList.push(classes.bold)
-    }
-    
-    return (
+   return (
       <StyleRoot>
       <div className={classes.App}>
-        <p className={classList.join(' ')}>List of Persons!!</p>
-        <button className={btnClasses.join(' ')} onClick={this.togglePersonHandler.bind(this)}>Toggle Persons</button>
+        <Cockpit persons={this.state.persons} showPersons={this.state.showPersons}
+        clicked={this.togglePersonHandler}/>
         {personsList}
       </div>
       </StyleRoot>
