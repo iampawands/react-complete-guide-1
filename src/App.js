@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import styled from 'styled-components'
 import Radium, { StyleRoot  } from 'radium'
+
+const StyledButton = styled.button`
+      background-color:${props => props.alt?'red':'green' };
+      color:white;
+      font:inherit;
+      cursor:pointer;
+      padding:8px;
+      border:1px solid blue;
+      &:hover{
+      background-color:${props => props.alt?'salmon':'lightgreen' };
+      color:black;
+      }`;
+
 class App extends Component {
   state = {
-    persons : [{id:1,name:'Pawan',age:18},
+    persons : [
+    {id:1,name:'Pawan',age:18},
     {id:2,name:'Amsn',age:18},
     {id:3,name:'Jaye',age:18}
     ],
@@ -57,19 +72,6 @@ class App extends Component {
   }
   
   render() {
-    const style = {
-      backgroundColor:'#008000',
-      color:'white',
-      font:'inherit',
-      cursor:'pointer',
-      padding:'8px',
-      border:'1px solid blue',
-      ':hover':{
-        backgroundColor:'lightgreen',
-        color:'black'
-      }
-    }
-    
     let personsList = null;
     
     if(this.state.showPersons){
@@ -85,11 +87,6 @@ class App extends Component {
             } )}
             </div>
         );
-        style.backgroundColor='red'
-        style[':hover'] = {
-        backgroundColor:'red',
-        color:'black'
-      }
         
     }
     
@@ -107,7 +104,7 @@ class App extends Component {
       <StyleRoot>
       <div className="App">
         <p className={classes.join(' ')}>List of Persons!!</p>
-        <button style={style} onClick={this.togglePersonHandler.bind(this)}>Toggle Persons</button>
+        <StyledButton alt={this.state.showPersons} onClick={this.togglePersonHandler.bind(this)}>Toggle Persons</StyledButton>
         {personsList}
       </div>
       </StyleRoot>
