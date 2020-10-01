@@ -6,6 +6,13 @@ import Radium, { StyleRoot  } from 'radium'
 import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
+  
+  constructor(props){
+    super(props);
+    console.log('this is in constructor');
+    
+  }
+  
   state = {
     persons : [
     {id:1,name:'Pawan',age:18},
@@ -14,6 +21,19 @@ class App extends Component {
     ],
     userName:'Pawan',
     showPersons : false
+  }
+  
+  static getDerivedStateFromProps(props,state){
+    console.log('IN getDerivedStateFromProps',props);
+    return state;
+  }
+  //this is deprecated.
+  componentDidMount(){
+      console.log('in componentDidMount');  
+  }
+  
+  componentWillMount(){
+    console.log('componentWillMount');
   }
   
   changeState = (newName) => {
@@ -62,6 +82,7 @@ class App extends Component {
   }
   
   render() {
+    console.log('in render method');
     let personsList = null;
     
     if(this.state.showPersons){

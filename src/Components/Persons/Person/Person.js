@@ -2,7 +2,7 @@ import React from 'react';
 import Radium from 'radium'
 import classes from './Person.css'
 const person = (props) => {
-    
+    console.log('Person component being rendered')
     return (
         <div className={classes.Person}>
         <p onClick={props.click}>{props.name} is {props.Age} years old. {props.children}</p>
