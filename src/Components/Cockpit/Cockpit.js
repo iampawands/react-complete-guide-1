@@ -6,9 +6,10 @@ const cockpit = (props) =>{
     useEffect(()=>{
         console.log('Cockpit useEffect')
 
-        setTimeout(()=>{alert("Hi there!!")},1000)
+        const timer = setTimeout(()=>{alert("Hi there!!")},1000)
 
         return () =>{
+            clearTimeout(timer)
             console.log('cleanup work in useEffect')
         }
     },[])
