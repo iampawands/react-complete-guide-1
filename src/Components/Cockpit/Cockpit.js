@@ -1,9 +1,10 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useContext} from 'react'
 import classes from './Cockpit.css'
 import AuthContext from '../../context/auth-context'
 
 const cockpit = (props) => {
     const toggleButtonRef = useRef(null)
+    const authContext  = useContext(AuthContext);
     //if second list is not given i.e. empty then user effect things will run only first time.this list mainly tells which objects to look before changing.
     useEffect(() => {
         console.log('Cockpit useEffect')
@@ -40,11 +41,11 @@ const cockpit = (props) => {
         <p className={classList.join(' ')}>List of Persons!!</p>
         <button ref={toggleButtonRef} className={btnClasses.join(' ')} onClick={() => props.clicked()}>Toggle Persons
         </button>
-        <AuthContext.Consumer>
-            { (context)=>
-                <button onClick={context.login} className={btnClasses.join(' ')}>Login</button>
-            }
-        </AuthContext.Consumer>
+
+        {
+            <button onClick={authContext.login} className={btnClasses.join(' ')}>Login</button>
+        }
+
     </div>
 }
 export default React.memo(cockpit);
