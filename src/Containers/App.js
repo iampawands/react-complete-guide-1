@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 //in the latest version you have to use './App.module.css' and rename css fie also to this i.e. App.module.css file. No need of npm run eject and chaning the config files.
 import classes from './App.css';
 import Persons from '../Components/Persons/Persons';
-import Radium, { StyleRoot  } from 'radium'
 import Cockpit from '../Components/Cockpit/Cockpit'
 
 class App extends Component {
@@ -27,15 +26,6 @@ class App extends Component {
     console.log('IN getDerivedStateFromProps',props);
     return state;
   }
-  //this is deprecated.
-  componentDidMount(){
-      console.log('in componentDidMount');  
-  }
-  
-  componentWillMount(){
-    console.log('componentWillMount');
-  }
-  
   changeState = (newName) => {
     this.setState({
     persons : [{name:newName,age:44},
@@ -94,16 +84,14 @@ class App extends Component {
         );   
     }
    return (
-      <StyleRoot>
       <div className={classes.App}>
         <Cockpit persons={this.state.persons} showPersons={this.state.showPersons}
         clicked={this.togglePersonHandler}/>
         {personsList}
       </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;
 
