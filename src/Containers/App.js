@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//in the latest version you have to use './App.module.css' and rename css fie also to this i.e. App.module.css file. No need of npm run eject and chaning the config files.
+//in the latest version you have to use './App.module.css' and rename css fie also to this i.e. App.module.css file. No need of npm run eject and changing the config files.
 import classes from './App.css';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit'
@@ -8,7 +8,7 @@ class App extends Component {
   
   constructor(props){
     super(props);
-    console.log('this is in constructor');
+    console.log('App constructor');
     
   }
   
@@ -23,16 +23,20 @@ class App extends Component {
   }
   
   static getDerivedStateFromProps(props,state){
-    console.log('IN getDerivedStateFromProps',props);
+    console.log('App getDerivedStateFromProps',props);
     return state;
   }
-  changeState = (newName) => {
-    this.setState({
-    persons : [{name:newName,age:44},
-    {name:'Amsnaa',age:33},
-    {name:'Jayeaa',age:22}
-    ]
-  });
+  componentDidMount() {
+    console.log('App componentDidMount')
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+      console.log('App shouldComponentUpdate')
+      return true;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('App componentDidUpdate')
   }
   
   changeTextHandler = (event, id) =>{
@@ -57,7 +61,6 @@ class App extends Component {
   
   togglePersonHandler = () =>{
     let currentState = this.state.showPersons;
-    console.log("App -> togglePersonHandler -> currentState", currentState)
     this.setState({
       showPersons:!currentState
     });
@@ -73,7 +76,7 @@ class App extends Component {
   }
   
   render() {
-    console.log('in render method');
+    console.log('App render method');
     let personsList = null;
     
     if(this.state.showPersons){

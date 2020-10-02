@@ -2,6 +2,25 @@ import React ,{Component}from 'react'
 import Person from './Person/Person';
 
 class Persons extends Component{
+    static getDerivedStateFromProps(state,props){
+        console.log(' Persons [getDerivedStateFromProps]',props);
+        return state;
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log('Persons [shouldComponentUpdate]')
+        return true
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('Persons [getSnapshotBeforeUpdate]')
+        return {message:'this is from getSnapshotBeforeUpdate'};
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('Persons [componentDidUpdate]',snapshot)
+    }
+
     render(){
         return <div>
         {this.props.personList.map((person,index) => {
