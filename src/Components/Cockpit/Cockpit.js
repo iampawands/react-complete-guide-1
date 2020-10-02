@@ -1,6 +1,13 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import classes from './Cockpit.css'
 const cockpit = (props) =>{
+
+    //if second list is not given i.e. empty then user effect things will run only first time.this list mainly tells which objects to look before changing.
+    useEffect(()=>{
+        console.log('Cockpit userEffect')
+
+        setTimeout(()=>{alert("Hi there!!")},1000)
+    },[])
     
     let btnClasses = [classes.Button]
     if(props.showPersons){

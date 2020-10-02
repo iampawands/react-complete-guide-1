@@ -2,10 +2,10 @@ import React ,{Component}from 'react'
 import Person from './Person/Person';
 
 class Persons extends Component{
-    static getDerivedStateFromProps(state,props){
-        console.log(' Persons [getDerivedStateFromProps]',props);
-        return state;
-    }
+    // static getDerivedStateFromProps(state,props){
+    //     console.log(' Persons [getDerivedStateFromProps]',props);
+    //     return state;
+    // }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         console.log('Persons [shouldComponentUpdate]')
