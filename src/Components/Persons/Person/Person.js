@@ -4,12 +4,16 @@ import Auxx from '../../../hoc/Auxilary'
 import withClass from "../../../hoc/withClass";
 import PropTypes from 'prop-types'
 class Person extends Component{
+    componentDidMount() {
+        this.inputElement.focus();
+    }
+
     render(){
          console.log('Person rendered..')
     return (
             <Auxx>
                 <p  onClick={this.props.click}>{this.props.name} is {this.props.Age} years old. {this.props.children}</p>
-                <input  type="text" onChange={this.props.textChange} value={this.props.name}/>
+                <input ref={(inputEle)=>{this.inputElement=inputEle}} type="text" onChange={this.props.textChange} value={this.props.name}/>
             </Auxx>
         );
     }
