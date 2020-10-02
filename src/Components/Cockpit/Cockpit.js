@@ -1,15 +1,14 @@
-import React,{ useEffect } from 'react'
+import React,{ useEffect,useRef } from 'react'
 import classes from './Cockpit.css'
 const cockpit = (props) =>{
-
+    const toggleButtonRef = useRef(null)
     //if second list is not given i.e. empty then user effect things will run only first time.this list mainly tells which objects to look before changing.
     useEffect(()=>{
         console.log('Cockpit useEffect')
 
-        const timer = setTimeout(()=>{alert("Hi there!!")},1000)
+        toggleButtonRef.current.click();
 
         return () =>{
-            clearTimeout(timer)
             console.log('cleanup work in useEffect')
         }
     },[])
@@ -37,7 +36,7 @@ const cockpit = (props) =>{
     
     return <div>
          <p className={classList.join(' ')}>List of Persons!!</p>
-        <button className={btnClasses.join(' ')} onClick={()=>props.clicked()}>Toggle Persons</button>
+        <button ref={toggleButtonRef} className={btnClasses.join(' ')} onClick={()=>props.clicked()}>Toggle Persons</button>
     </div>
 }
 export default React.memo(cockpit);
