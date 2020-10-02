@@ -19,7 +19,8 @@ class App extends Component {
     {id:3,name:'Jaye',age:18}
     ],
     userName:'Pawan',
-    showPersons : false
+    showPersons : false,
+      showCockpit: true
   }
   
   static getDerivedStateFromProps(props,state){
@@ -38,7 +39,7 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log('App componentDidUpdate')
   }
-  
+
   changeTextHandler = (event, id) =>{
       let perInd = this.state.persons.findIndex(p=>{
         return p.id === id;
@@ -88,8 +89,11 @@ class App extends Component {
     }
    return (
       <div className={classes.App}>
-        <Cockpit persons={this.state.persons} showPersons={this.state.showPersons}
-        clicked={this.togglePersonHandler}/>
+          <button onClick={()=>{this.setState({showCockpit:!this.state.showCockpit})}}>Toggle Cockpit</button>
+          {
+              this.state.showCockpit?<Cockpit persons={this.state.persons} showPersons={this.state.showPersons}
+                                              clicked={this.togglePersonHandler}/>:null
+          }
         {personsList}
       </div>
     );
