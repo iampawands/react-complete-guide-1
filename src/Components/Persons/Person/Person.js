@@ -4,8 +4,13 @@ import Auxx from '../../../hoc/Auxilary'
 import withClass from "../../../hoc/withClass";
 import PropTypes from 'prop-types'
 class Person extends Component{
+    constructor(props) {
+        super(props);
+        this.inputElementRef = React.createRef();
+    }
+
     componentDidMount() {
-        this.inputElement.focus();
+        this.inputElementRef.current.focus();
     }
 
     render(){
@@ -13,7 +18,7 @@ class Person extends Component{
     return (
             <Auxx>
                 <p  onClick={this.props.click}>{this.props.name} is {this.props.Age} years old. {this.props.children}</p>
-                <input ref={(inputEle)=>{this.inputElement=inputEle}} type="text" onChange={this.props.textChange} value={this.props.name}/>
+                <input ref={this.inputElementRef} type="text" onChange={this.props.textChange} value={this.props.name}/>
             </Auxx>
         );
     }
