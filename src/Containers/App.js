@@ -5,6 +5,7 @@ import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit'
 import withClass from '../hoc/withClass'
 import Auxx from '../hoc/Auxilary'
+
 class App extends Component {
   
   constructor(props){
@@ -109,6 +110,8 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default withClass(App,classes.App);
 
