@@ -37,6 +37,7 @@ const cockpit = (props) =>{
     return <div>
          <p className={classList.join(' ')}>List of Persons!!</p>
         <button ref={toggleButtonRef} className={btnClasses.join(' ')} onClick={()=>props.clicked()}>Toggle Persons</button>
+        <button onClick={props.login} className={btnClasses.join(' ')}>Login</button>
     </div>
 }
 export default React.memo(cockpit);
